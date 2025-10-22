@@ -1,7 +1,6 @@
 version: "3.8"
 volumes:
   pg_data:
-  castlemock_data:
 services:
   postgres:
     image: postgis/postgis:17-3.5
