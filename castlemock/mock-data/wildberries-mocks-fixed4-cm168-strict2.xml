@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='utf-8'?>
+<RestExportContainer>
+  <project>
+    <id>wildberries-mocks-(mvp)-prj</id>
+    <name>Wildberries Mocks (MVP)</name>
+  <created>2024-01-01T00:00:00</created><updated>2024-01-01T00:00:00</updated>
+  </project>
+  <applications>
+      <application>
+        <id>app-wb-01</id>
+        <projectId>wildberries-mocks-(mvp)-prj</projectId><name>Wildberries API</name>
+        <resources>
+          <resource>
+            <id>res-wb-all</id>
+            <applicationId>app-wb-01</applicationId><name>WB - MVP</name>
+            <methods>
+              <method>
+                <id>m-wb-sales-01</id>
+                <resourceId>res-wb-all</resourceId>
+                <name>Get sales by period</name>
+                <httpMethod>GET</httpMethod>
+                <uri>/wb/api/v1/supplier/sales</uri>
+                <status>MOCKED</status>
+                <responseStrategy>SEQUENCE</responseStrategy>
+                <simulateNetworkDelay>false</simulateNetworkDelay>
+                <networkDelay>0</networkDelay>
+                <automaticForward>false</automaticForward>
+                <currentResponseSequenceIndex>0</currentResponseSequenceIndex>
+                <defaultMockResponseId>m-wb-sales-01-ok</defaultMockResponseId>
+                <mockResponses>
+                  <mockResponse>
+                    <id>m-wb-sales-01-ok</id>
+                    <methodId>m-wb-sales-01</methodId>
+                    <name>200 - sample</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>200</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{
+  "sales": [
+    {
+      "date": "2025-10-20T10:15:00Z",
+      "nmId": 12345678,
+      "supplierArticle": "SKU-RED-42",
+      "barcode": "2000001234567",
+      "techSize": "42",
+      "warehouseName": "Koledino",
+      "isSupply": false,
+      "isRealization": true,
+      "totalPrice": 1999.00,
+      "discountPercent": 15,
+      "forPay": 1699.15,
+      "quantity": 1,
+      "regionName": "Moskva",
+      "saleID": "wb-01-ab12"
+    }
+  ],
+  "hasNext": false
+}
+                    </body>
+                  </mockResponse>
+                  <mockResponse>
+                    <id>m-wb-sales-01-429</id>
+                    <methodId>m-wb-sales-01</methodId>
+                    <name>429 - throttled</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>429</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                      <httpHeader>
+                        <name>Retry-After</name>
+                        <value>30</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{"error":"too many requests","code":429}
+                    </body>
+                  </mockResponse>
+                </mockResponses>
+              </method>
+              <method>
+                <id>m-wb-returns-01</id>
+                <resourceId>res-wb-all</resourceId>
+                <name>Get returns by period</name>
+                <httpMethod>GET</httpMethod>
+                <uri>/wb/api/v1/supplier/returns</uri>
+                <status>MOCKED</status>
+                <responseStrategy>SEQUENCE</responseStrategy>
+                <simulateNetworkDelay>false</simulateNetworkDelay>
+                <networkDelay>0</networkDelay>
+                <automaticForward>false</automaticForward>
+                <currentResponseSequenceIndex>0</currentResponseSequenceIndex>
+                <defaultMockResponseId>m-wb-returns-01-ok</defaultMockResponseId>
+                <mockResponses>
+                  <mockResponse>
+                    <id>m-wb-returns-01-ok</id>
+                    <methodId>m-wb-returns-01</methodId>
+                    <name>200 - sample</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>200</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{
+  "returns": [
+    {
+      "date": "2025-10-19T12:00:00Z",
+      "saleID": "wb-01-ab12",
+      "reason": "Ne podoshel razmer",
+      "quantity": 1,
+      "forPay": -1699.15
+    }
+  ]
+}
+                    </body>
+                  </mockResponse>
+                </mockResponses>
+              </method>
+              <method>
+                <id>m-wb-stocks-01</id>
+                <resourceId>res-wb-all</resourceId>
+                <name>Get warehouse stocks</name>
+                <httpMethod>GET</httpMethod>
+                <uri>/wb/api/v1/supplier/stocks</uri>
+                <status>MOCKED</status>
+                <responseStrategy>SEQUENCE</responseStrategy>
+                <simulateNetworkDelay>false</simulateNetworkDelay>
+                <networkDelay>0</networkDelay>
+                <automaticForward>false</automaticForward>
+                <currentResponseSequenceIndex>0</currentResponseSequenceIndex>
+                <defaultMockResponseId>m-wb-stocks-01-ok</defaultMockResponseId>
+                <mockResponses>
+                  <mockResponse>
+                    <id>m-wb-stocks-01-ok</id>
+                    <methodId>m-wb-stocks-01</methodId>
+                    <name>200 - sample</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>200</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{
+  "stocks": [
+    {
+      "nmId": 12345678,
+      "supplierArticle": "SKU-RED-42",
+      "warehouse": "Koledino",
+      "inWayToClient": 2,
+      "inWayFromClient": 1,
+      "quantity": 57,
+      "daysOfCover": 14
+    }
+  ]
+}
+                    </body>
+                  </mockResponse>
+                </mockResponses>
+              </method>
+              <method>
+                <id>m-wb-prices-01</id>
+                <resourceId>res-wb-all</resourceId>
+                <name>Get prices</name>
+                <httpMethod>GET</httpMethod>
+                <uri>/wb/public/api/v1/info</uri>
+                <status>MOCKED</status>
+                <responseStrategy>SEQUENCE</responseStrategy>
+                <simulateNetworkDelay>false</simulateNetworkDelay>
+                <networkDelay>0</networkDelay>
+                <automaticForward>false</automaticForward>
+                <currentResponseSequenceIndex>0</currentResponseSequenceIndex>
+                <defaultMockResponseId>m-wb-prices-01-ok</defaultMockResponseId>
+                <mockResponses>
+                  <mockResponse>
+                    <id>m-wb-prices-01-ok</id>
+                    <methodId>m-wb-prices-01</methodId>
+                    <name>200 - sample</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>200</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{
+  "prices": [
+    {
+      "nmId": 12345678,
+      "supplierArticle": "SKU-RED-42",
+      "price": 2499.00,
+      "discount": 20,
+      "promoPrice": 1999.00,
+      "date": "2025-10-22"
+    }
+  ]
+}
+                    </body>
+                  </mockResponse>
+                </mockResponses>
+              </method>
+              <method>
+                <id>m-wb-finance-01</id>
+                <resourceId>res-wb-all</resourceId>
+                <name>Weekly realization report</name>
+                <httpMethod>GET</httpMethod>
+                <uri>/wb/api/v1/supplier/reportDetailByPeriod</uri>
+                <status>MOCKED</status>
+                <responseStrategy>SEQUENCE</responseStrategy>
+                <simulateNetworkDelay>false</simulateNetworkDelay>
+                <networkDelay>0</networkDelay>
+                <automaticForward>false</automaticForward>
+                <currentResponseSequenceIndex>0</currentResponseSequenceIndex>
+                <defaultMockResponseId>m-wb-finance-01-ok</defaultMockResponseId>
+                <mockResponses>
+                  <mockResponse>
+                    <id>m-wb-finance-01-ok</id>
+                    <methodId>m-wb-finance-01</methodId>
+                    <name>200 - sample</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>200</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{
+  "report": {
+    "periodFrom": "2025-10-13",
+    "periodTo": "2025-10-19",
+    "items": [
+      {
+        "nmId": 12345678,
+        "supplierArticle": "SKU-RED-42",
+        "sales": 25,
+        "revenue": 49975.00,
+        "commission": 7496.25,
+        "storageFee": 1200.00,
+        "advertFee": 3500.00,
+        "forPay": 37778.75
+      }
+    ]
+  }
+}
+                    </body>
+                  </mockResponse>
+                </mockResponses>
+              </method>
+              <method>
+                <id>m-wb-reviews-01</id>
+                <resourceId>res-wb-all</resourceId>
+                <name>Get product reviews</name>
+                <httpMethod>GET</httpMethod>
+                <uri>/wb/api/v1/feedbacks</uri>
+                <status>MOCKED</status>
+                <responseStrategy>SEQUENCE</responseStrategy>
+                <simulateNetworkDelay>false</simulateNetworkDelay>
+                <networkDelay>0</networkDelay>
+                <automaticForward>false</automaticForward>
+                <currentResponseSequenceIndex>0</currentResponseSequenceIndex>
+                <defaultMockResponseId>m-wb-reviews-01-ok</defaultMockResponseId>
+                <mockResponses>
+                  <mockResponse>
+                    <id>m-wb-reviews-01-ok</id>
+                    <methodId>m-wb-reviews-01</methodId>
+                    <name>200 - sample</name>
+                    <status>ENABLED</status>
+                    <httpStatusCode>200</httpStatusCode>
+                    <httpHeaders>
+                      <httpHeader>
+                        <name>Content-Type</name>
+                        <value>application/json</value>
+                      </httpHeader>
+                    </httpHeaders>
+                    <body>
+{
+  "reviews": [
+    {
+      "id": "rv-wb-101",
+      "nmId": 12345678,
+      "rating": 2,
+      "text": "Razmer malomerit, vernul.",
+      "createdAt": "2025-10-21T08:02:00Z",
+      "helpful": 3,
+      "answered": false
+    }
+  ],
+  "hasNext": false
+}
+                    </body>
+                  </mockResponse>
+                </mockResponses>
+              </method>
+            </methods>
+          <uri>/wb-mvp</uri></resource>
+        </resources>
+      </application>
+    </applications>
+</RestExportContainer>

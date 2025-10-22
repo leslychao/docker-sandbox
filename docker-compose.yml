@@ -1,0 +1,29 @@
+version: "3.8"
+volumes:
+  pg_data:
+  castlemock_data:
+services:
+  postgres:
+    image: postgis/postgis:17-3.5
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    command: [ "postgres", "-c", "tcp_keepalives_idle=900", "-c", "tcp_keepalives_interval=60", "-c", "tcp_keepalives_count=5" ]
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5434:5432"
+  castlemock:
+    image: castlemock/castlemock:latest
+    container_name: castlemock
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_SERVLET_CONTEXT_PATH=/
+      - SERVER_PORT=8080
+    volumes:
+      - castlemock_data:/root/.castlemock
