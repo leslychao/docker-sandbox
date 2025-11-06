@@ -4,7 +4,7 @@ volumes:
 services:
   postgres:
     image: postgis/postgis:17-3.5
-    container_name: postgres
+    container_name: pg
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
